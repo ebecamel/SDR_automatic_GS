@@ -92,7 +92,6 @@ while( fifo_from_rx.isFromRx() && sat_view) { // if we have something in the inp
          {
             print('Writing ...');
          }
-         
          fifo_to_file.enqueue( ifdata );         // write the samples in the output queue
          doppler_value = tracker.load("doppler");  // Read doppler value
          slice.setCenter( 200e3 + parseInt(doppler_value)) ; // Correct doppler deviation
