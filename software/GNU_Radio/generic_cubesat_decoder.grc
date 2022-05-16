@@ -1,0 +1,318 @@
+options:
+  parameters:
+    author: Enzo BECAMEL F4IAI
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: Cubesat decoder with telemtry parse & forward for automatic ground
+      station.
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: no_gui
+    hier_block_src_path: '.:'
+    id: generic_cubesat_decoder
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: run
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Generic cubesat decoder
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: gs_callsign
+  id: variable_config
+  parameters:
+    comment: ''
+    config_file: gs_config.ini
+    option: callsign
+    section: main
+    type: string
+    value: '"no"'
+    writeback: None
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1032, 12.0]
+    rotation: 0
+    state: true
+- name: gs_latitude
+  id: variable_config
+  parameters:
+    comment: ''
+    config_file: gs_config.ini
+    option: latitude
+    section: main
+    type: real
+    value: '0.0000'
+    writeback: None
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 12.0]
+    rotation: 0
+    state: true
+- name: gs_longitude
+  id: variable_config
+  parameters:
+    comment: ''
+    config_file: gs_config.ini
+    option: longitude
+    section: main
+    type: real
+    value: '0.0000'
+    writeback: None
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [880, 12.0]
+    rotation: 0
+    state: true
+- name: kiss_server_port
+  id: variable_config
+  parameters:
+    comment: ''
+    config_file: gs_config.ini
+    option: kiss_port
+    section: main
+    type: string
+    value: '"no"'
+    writeback: None
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1184, 12.0]
+    rotation: 0
+    state: true
+- name: link_forwarder
+  id: variable_config
+  parameters:
+    comment: ''
+    config_file: gs_config.ini
+    option: link
+    section: main
+    type: string
+    value: '"no"'
+    writeback: None
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [576, 12.0]
+    rotation: 0
+    state: true
+- name: result_folder_path
+  id: variable
+  parameters:
+    comment: ''
+    value: '"../results/"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [208, 76.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '48000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [208, 12.0]
+    rotation: 0
+    state: enabled
+- name: blocks_file_source_0_0_0
+  id: blocks_file_source
+  parameters:
+    affinity: ''
+    alias: ''
+    begin_tag: pmt.PMT_NIL
+    comment: ''
+    file: /opt/GS_ramdisk/rx.cs16
+    length: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    repeat: 'False'
+    type: short
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [152, 340.0]
+    rotation: 0
+    state: true
+- name: blocks_interleaved_short_to_complex_0
+  id: blocks_interleaved_short_to_complex
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    swap: 'False'
+    vector_input: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [424, 372.0]
+    rotation: 0
+    state: true
+- name: blocks_message_debug_0
+  id: blocks_message_debug
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [984, 216.0]
+    rotation: 0
+    state: true
+- name: relative_path
+  id: epy_module
+  parameters:
+    alias: ''
+    comment: ''
+    source_code: 'import os
+
+
+      script_path = os.path.dirname(os.path.realpath(__file__))
+
+      os.chdir(script_path)
+
+      '
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 140.0]
+    rotation: 0
+    state: true
+- name: sat_norad
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ''
+    short_id: ''
+    type: intx
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [456, 12.0]
+    rotation: 0
+    state: true
+- name: satellites_kiss_server_sink_0
+  id: satellites_kiss_server_sink
+  parameters:
+    address: '""'
+    affinity: ''
+    alias: ''
+    comment: ''
+    options: '""'
+    port: '8100'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 516.0]
+    rotation: 0
+    state: true
+- name: satellites_satellite_decoder_0
+  id: satellites_satellite_decoder
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    definition: norad
+    file: ''
+    iq: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: ''
+    norad: sat_norad
+    options: '""'
+    samp_rate: samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [624, 356.0]
+    rotation: 0
+    state: true
+- name: satellites_submit_0
+  id: satellites_submit
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    latitude: gs_latitude
+    longitude: gs_longitude
+    noradID: int(sat_norad)
+    source: gs_callsign
+    tstamp: ''
+    url: link_forwarder
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 388.0]
+    rotation: 0
+    state: enabled
+- name: satellites_telemetry_parser_0
+  id: satellites_telemetry_parser
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    definition: ax25
+    file: result_folder_path + "decoder_output.txt"
+    options: '""'
+    output: file
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 324.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [blocks_file_source_0_0_0, '0', blocks_interleaved_short_to_complex_0, '0']
+- [blocks_interleaved_short_to_complex_0, '0', satellites_satellite_decoder_0, '0']
+- [satellites_satellite_decoder_0, out, blocks_message_debug_0, print_pdu]
+- [satellites_satellite_decoder_0, out, satellites_kiss_server_sink_0, in]
+- [satellites_satellite_decoder_0, out, satellites_submit_0, in]
+- [satellites_satellite_decoder_0, out, satellites_telemetry_parser_0, in]
+
+metadata:
+  file_format: 1
