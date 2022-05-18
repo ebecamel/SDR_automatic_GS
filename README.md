@@ -1,5 +1,6 @@
 # SDR based autotmatic Ground Station
 Automatic SDR based ground station for VHF and UHF satellite reception. Working on Linux computer and Jetson Nano 2GB / 4GB.
+This ground station is still in development, the current version work on computer and Jetson Nano but with only 1 antenna (the script to select the VHF or the UHF antenna is not yet avalaible). The documentation for the hardware part will be only online soon.
 
 ## Description
 The objective is to build a automatic ground station. The software download the TLE, predict passses, track satellites, receive the signal, demodule the signal and upload the datas.
@@ -30,6 +31,11 @@ GNU Radio Companion is an Open-Source software to develop Sofwware Defined Radio
 To install GNU Radio on a computer you can read the [dedicated page on my website](https://f4iai.fr/logiciels/gnu-radio/installation-du-logiciel-gnu-radio-companion-sous-linux/).
 
 For Jetson Nano, I recommand to use a Linux distribution with GNU Radio already installed. You can download the [NanoSDR distribution available on this link](https://github.com/SDR-Technologies/NanoSDR).
+
+Before using the ground station, it is recommanded to launche the following command to aalow volk to find the most optimized configuration :
+~~~
+volk_profile
+~~~
 
 #### gr-satellites
 With GNU Radio you need to install the gr-satellites library to add satellites functions to GNU Radio. You can read how to install [on the dediacted Git](https://github.com/daniestevez/gr-satellites) and [on the online documentation](https://gr-satellites.readthedocs.io/en/latest/installation_intro.html).

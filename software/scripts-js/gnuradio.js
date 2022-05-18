@@ -1,6 +1,5 @@
 rename("gnuradio_task")
 load("../config/config.js");
-print(argv(0) + "////" + argv(1))
 
 var command_end_pass = {
     'command' : "/bin/bash",
